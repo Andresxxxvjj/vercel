@@ -606,8 +606,8 @@ export function getEnvForPackageManager({
     cliType,
     lockfileVersion,
     corepackPackageManager: packageJsonPackageManager,
-    corepackEnabled,
     nodeVersion,
+    corepackEnabled,
   });
 
   if (corepackEnabled) {
@@ -698,13 +698,12 @@ export function getPathOverrideForPackageManager({
   lockfileVersion,
   corepackPackageManager,
   corepackEnabled,
-  nodeVersion,
 }: {
   cliType: CliType;
   lockfileVersion: number | undefined;
   corepackPackageManager: string | undefined;
-  corepackEnabled: boolean;
   nodeVersion: NodeVersion | undefined;
+  corepackEnabled: boolean;
 }): {
   /**
    * Which lockfile was detected.
@@ -723,7 +722,7 @@ export function getPathOverrideForPackageManager({
   const detectedPackageManger = detectPackageManager(
     cliType,
     lockfileVersion,
-    nodeVersion
+    corepackEnabled
   );
   if (!detectedPackageManger) {
     return NO_OVERRIDE;
@@ -821,14 +820,13 @@ function validateVersionSpecifier(version: string) {
 function detectPackageManager(
   cliType: CliType,
   lockfileVersion: number | undefined,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nodeVersion: NodeVersion | undefined
+  corepackEnabled: boolean
 ) {
   switch (cliType) {
     case 'npm':
       return undefined;
     case 'pnpm':
-      switch (detectPnpmVersion(lockfileVersion)) {
+      switch (detectPnpmVersion(lockfileVersion, corepackEnabled)) {
         case 'pnpm 7':
           // pnpm 7
           return {
