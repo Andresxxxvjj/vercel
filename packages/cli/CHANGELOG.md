@@ -1,5 +1,17 @@
 # vercel
 
+## 34.2.6
+
+### Patch Changes
+
+- [built-utils] Handle case of not having lockfile when corepack is enabled ([#11697](https://github.com/vercel/vercel/pull/11697))
+
+- Updated dependencies [[`06d2d860e`](https://github.com/vercel/vercel/commit/06d2d860e47aed792247bf929805b180ed6e2dab), [`b735f37fd`](https://github.com/vercel/vercel/commit/b735f37fd92c707040e72084b0fdb4f8fd01dd51)]:
+  - @vercel/build-utils@8.2.2
+  - @vercel/next@4.2.16
+  - @vercel/node@3.1.7
+  - @vercel/static-build@2.5.11
+
 ## 34.2.5
 
 ### Patch Changes
